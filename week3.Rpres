@@ -1,0 +1,44 @@
+R-Markdown and plotly
+========================================================
+author: "Sanjay Kumar"
+date: "29-Dec-2018"
+autosize: true
+
+Concept
+========================================================
+
+We will use plotly package to show a time series data for following stocks
+
+- Oracle (Source: https://stooq.com/q/d/l/?s=ORCL.US&i=d)
+
+
+Slide With Code
+========================================================
+- Load data from local files downloaded from stooq.com
+- Uses read.csv function
+- plot using plotly package
+
+```{r, echo=FALSE}
+setwd("C:/Users/sanjayx/Desktop/coursera/olive_data")
+orcl<-read.csv("./orcl_us_d.csv")
+
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+library(plotly)
+library(webshot)
+library(htmlwidgets)
+#orcl<-data.frame(orcl)
+p<-plot_ly(x=~as.Date(orcl$Date),y=~orcl$Close,mode = 'lines')
+p
+
+#htmlwidgets::saveWidget(p, "./p.html")
+
+#cat('<iframe src="./p.html" width=100% height=100% allowtransparency="true"></iframe>')
+
+#htmlwidgets::saveWidget(as_widget(p), "p.html")
+#cat('<iframe src="./p.html" width=100% height=100% allowtransparency="true"> #</iframe>')
+```
